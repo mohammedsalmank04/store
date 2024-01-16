@@ -13,4 +13,10 @@ public interface ProductDAO {
     List<Product> findAll();
 
     List<Product> findByName(String name);
+
+    void update(Product product);
+
+    void updateName(Product product );
+
+    void delete(Integer id);
 }

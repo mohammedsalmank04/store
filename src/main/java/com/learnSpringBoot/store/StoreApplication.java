@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.sound.midi.Soundbank;
 import java.util.List;
+import java.util.Scanner;
 
 @SpringBootApplication
 public class StoreApplication {
@@ -25,9 +27,37 @@ public class StoreApplication {
 
 			//queryForStudents(productDAO);
 
-			findByName(productDAO);
+			//findByName(productDAO);
+			//update(productDAO);
+
+			//updateName(productDAO);
+
+			deleteProductById(productDAO);
 
 		};
+	}
+
+	private void deleteProductById(ProductDAO productDAO) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter ID: ");
+		int id = scan.nextInt();
+		Product tempProduct = productDAO.findById(id);
+		productDAO.delete(id);
+		System.out.println("Deleted");
+	}
+
+	private void updateName(ProductDAO productDAO) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter ID: ");
+		int id = scan.nextInt();
+		System.out.println("Enter name: ");
+		String newName = scan.next();
+
+		Product theProduct = productDAO.findById(id);
+		theProduct.setName(newName);
+		productDAO.updateName(theProduct);
+		System.out.println("updated");
+
 	}
 
 	private void queryForStudents(ProductDAO productDAO) {
@@ -64,6 +94,14 @@ public class StoreApplication {
 		for(Product p:theProducts){
 			System.out.println(p);
 		}
+	}
+
+	private void update(ProductDAO productDAO){
+		Product theProduct = productDAO.findById(11);
+		theProduct.setName("Wise-original");
+		productDAO.update(theProduct);
+		System.out.println("update product: "+productDAO.findById(11));
+
 	}
 
 }
