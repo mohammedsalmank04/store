@@ -2,6 +2,7 @@ package com.learnSpringBoot.store.entity;
 
 import com.learnSpringBoot.store.dao.ProductDAO;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,5 +63,11 @@ public class ProductDAOImpl implements ProductDAO {
         Product tempProduct = findById(id);
         entityManager.remove(tempProduct);
 
+    }
+
+    @Override
+    public int getSize() {
+        List<Product> productList = findAll();
+        return productList.size();
     }
 }

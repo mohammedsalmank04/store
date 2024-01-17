@@ -19,4 +19,6 @@ public interface ProductDAO {
     void updateName(Product product );
 
     void delete(Integer id);
+
+    int getSize();
 }
