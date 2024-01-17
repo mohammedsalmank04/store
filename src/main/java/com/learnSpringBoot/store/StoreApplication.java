@@ -18,7 +18,7 @@ public class StoreApplication {
 		SpringApplication.run(StoreApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public CommandLineRunner commandLineRunner(ProductDAO productDAO){
 		return runner -> {
 			//createProduct(productDAO);
@@ -32,12 +32,12 @@ public class StoreApplication {
 
 			//updateName(productDAO);
 
-			deleteProductById(productDAO);
+			//deleteProductById(productDAO);
 
 		};
-	}
+	}*/
 
-	private void deleteProductById(ProductDAO productDAO) {
+	/*private void deleteProductById(ProductDAO productDAO) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter ID: ");
 		int id = scan.nextInt();
@@ -102,6 +102,6 @@ public class StoreApplication {
 		productDAO.update(theProduct);
 		System.out.println("update product: "+productDAO.findById(11));
 
-	}
+	}*/
 
 }
