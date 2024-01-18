@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductDAO {
 
-    void save(Product product);
+    Product save(Product product);
 
     Product findById(int id);
 
@@ -14,11 +14,13 @@ public interface ProductDAO {
 
     List<Product> findByName(String name);
 
-    void update(Product product);
 
-    void updateName(Product product );
+
+
 
     void delete(Integer id);
 
     int getSize();
+
+
 }

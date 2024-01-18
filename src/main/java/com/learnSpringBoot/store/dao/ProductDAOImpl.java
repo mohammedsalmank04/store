@@ -1,6 +1,7 @@
-package com.learnSpringBoot.store.entity;
+package com.learnSpringBoot.store.dao;
 
 import com.learnSpringBoot.store.dao.ProductDAO;
+import com.learnSpringBoot.store.entity.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -20,9 +21,10 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    @Transactional
-    public void save(Product product) {
-        entityManager.persist(product);
+
+    public Product save(Product product) {
+        Product dbProduct = entityManager.merge(product);
+        return  dbProduct;
     }
 
     @Override
@@ -45,20 +47,12 @@ public class ProductDAOImpl implements ProductDAO {
 
         return theQuery.getResultList();
     }
-    @Transactional
-    @Override
-    public void update(Product product) {
-        entityManager.merge(product);
-    }
+
+
+
 
     @Override
-    @Transactional
-    public void updateName(Product product) {
-        entityManager.merge(product);
-    }
 
-    @Override
-    @Transactional
     public void delete(Integer id) {
         Product tempProduct = findById(id);
         entityManager.remove(tempProduct);
