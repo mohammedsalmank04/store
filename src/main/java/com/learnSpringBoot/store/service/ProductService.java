@@ -12,7 +12,7 @@ public interface ProductService {
 
     Product save(Product product);
 
-    void delete(Integer id);
+    void deleteById(int id);
 
 
 

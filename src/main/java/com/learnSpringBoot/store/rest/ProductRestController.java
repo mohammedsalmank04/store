@@ -60,7 +60,7 @@ public class ProductRestController {
         if(tempProduct == null){
             throw  new RuntimeException("Employee not found");
         }
-        productService.delete(productId);
+        productService.deleteById(productId);
         return "Deleted Employee id";
     }
 
