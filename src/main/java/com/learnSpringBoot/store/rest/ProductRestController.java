@@ -1,6 +1,7 @@
 package com.learnSpringBoot.store.rest;
 
 import com.learnSpringBoot.store.dao.ProductDAO;
+import com.learnSpringBoot.store.dao.ProductRepository;
 import com.learnSpringBoot.store.entity.Product;
 import com.learnSpringBoot.store.exception.ProductErrorResponse;
 import com.learnSpringBoot.store.exception.ProductNotFoundException;
@@ -14,18 +15,29 @@ import javax.sound.sampled.Port;
 import java.util.List;
 
 @RestController
-
+@RequestMapping("/products")
 public class ProductRestController {
 
-    private ProductService productService;
-
+    private ProductRepository productRepository;
     @Autowired
-    public ProductRestController(ProductService productService) {
-        this.productService = productService;
+    public ProductRestController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+    @GetMapping("/getCount")
+    public List<Product> getCount(@RequestBody Product product){
+        int quantity = product.getQuantityInStock();
+        return productRepository.getLessStockProduct(quantity);
     }
 
+    @GetMapping("/sum")
+    public double getSum(){
+        return productRepository.getSumOfPrice();
+    }
 
-
+    @GetMapping("/quantity")
+    public double quantity(){
+        return productRepository.getTotalQuantity();
+    }
 }
 
     // Add an exception handler
