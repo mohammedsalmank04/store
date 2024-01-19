@@ -14,7 +14,7 @@ import javax.sound.sampled.Port;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+
 public class ProductRestController {
 
     private ProductService productService;
@@ -24,45 +24,7 @@ public class ProductRestController {
         this.productService = productService;
     }
 
-    @GetMapping("/products")
-    public List<Product> getProducts(){
-        List<Product> theProducts = productService.findAll();
 
-        return theProducts;
-    }
-
-    @GetMapping("/products/{productId}")
-    public Product getProduct(@PathVariable int productId){
-
-        return productService.findById(productId);
-    }
-
-    // Add mapping to add a new product
-
-    @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product){
-        product.setId(0);
-
-        Product dbProduct = productService.save(product);
-
-        return dbProduct;
-    }
-
-    @PutMapping("/products")
-    public Product updateProduct(@RequestBody Product product){
-        Product dbProduct =productService.save(product);
-        return dbProduct;
-    }
-
-    @DeleteMapping("/products/{productId}")
-    public String deleteProduct(@PathVariable int productId){
-        Product tempProduct = productService.findById(productId);
-        if(tempProduct == null){
-            throw  new RuntimeException("Employee not found");
-        }
-        productService.deleteById(productId);
-        return "Deleted Employee id";
-    }
 
 }
 

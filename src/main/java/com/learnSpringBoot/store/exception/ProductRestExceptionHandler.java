@@ -10,7 +10,7 @@ public class ProductRestExceptionHandler {
 
     // Add exception handling code
 
-    @ExceptionHandler
+    /*@ExceptionHandler
     public ResponseEntity<ProductErrorResponse> handleException(Exception exc){
         // Create a productErrorResponse
 
@@ -23,5 +23,5 @@ public class ProductRestExceptionHandler {
 
 
         return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
-    }
+    }*/
 }
