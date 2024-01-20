@@ -45,9 +45,9 @@ public class DemoSecurityConfig {
                         hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
                         .requestMatchers(HttpMethod.POST,"/products").
                         hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.PUT,"/products").
+                        .requestMatchers(HttpMethod.PUT,"/products/**").
                         hasAnyRole("MANAGER","ADMIN")
-                        .requestMatchers(HttpMethod.DELETE,"/products").
+                        .requestMatchers(HttpMethod.DELETE,"/products/**").
                         hasAnyRole("ADMIN")
 
                 );
