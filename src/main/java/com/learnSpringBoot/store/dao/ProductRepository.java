@@ -18,4 +18,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> ,Cust
     double getSumOfPrice();
     @Query("SELECT SUM(quantityInStock) FROM Product")
     double getTotalQuantity();
+
+    // NOTE:- still not using customized product repository
 }

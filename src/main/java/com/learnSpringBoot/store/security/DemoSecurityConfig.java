@@ -26,12 +26,12 @@ public class DemoSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(configurer ->
-                configurer.requestMatchers(HttpMethod.GET,"/products").
+                configurer.requestMatchers(HttpMethod.GET,"/**").
                         hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
                         .requestMatchers(HttpMethod.GET,"/products/**").
                         hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
-                        .requestMatchers(HttpMethod.POST,"/products").
-                        hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.POST,"/**").
+                        hasAnyRole("MANAGER","ADMIN")
                         .requestMatchers(HttpMethod.PUT,"/products/**").
                         hasAnyRole("MANAGER","ADMIN")
                         .requestMatchers(HttpMethod.DELETE,"/products/**").

@@ -1,4 +1,4 @@
-package com.learnSpringBoot.store.dao;
+package com.learnSpringBoot.store.demoDAO;
 
 import com.learnSpringBoot.store.entity.Product;
 

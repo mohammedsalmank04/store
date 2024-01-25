@@ -1,13 +1,10 @@
-package com.learnSpringBoot.store.dao;
+package com.learnSpringBoot.store.demoDAO;
 
-import com.learnSpringBoot.store.dao.ProductDAO;
 import com.learnSpringBoot.store.entity.Product;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

@@ -1,15 +1,7 @@
 package com.learnSpringBoot.store;
 
-import com.learnSpringBoot.store.dao.ProductDAO;
-import com.learnSpringBoot.store.entity.Product;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import javax.sound.midi.Soundbank;
-import java.util.List;
-import java.util.Scanner;
 
 @SpringBootApplication
 public class StoreApplication {
