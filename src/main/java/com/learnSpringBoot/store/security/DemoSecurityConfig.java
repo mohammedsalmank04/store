@@ -28,13 +28,13 @@ public class DemoSecurityConfig {
         http.authorizeHttpRequests(configurer ->
                 configurer.requestMatchers(HttpMethod.GET,"/**").
                         hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
-                        .requestMatchers(HttpMethod.GET,"/products/**").
+                        .requestMatchers(HttpMethod.GET,"/**").
                         hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
                         .requestMatchers(HttpMethod.POST,"/**").
                         hasAnyRole("MANAGER","ADMIN")
-                        .requestMatchers(HttpMethod.PUT,"/products/**").
+                        .requestMatchers(HttpMethod.PUT,"/**").
                         hasAnyRole("MANAGER","ADMIN")
-                        .requestMatchers(HttpMethod.DELETE,"/products/**").
+                        .requestMatchers(HttpMethod.DELETE,"/**").
                         hasAnyRole("ADMIN")
 
                 );
