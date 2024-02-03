@@ -12,8 +12,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private int id;
-    @Column(name = "customer_id")
-    private int customerId;
+    @OneToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
     @Column(name = "order_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private String orderDate;
@@ -29,12 +30,13 @@ public class Order {
     @Column(name = "shipper_id")
     @Nullable
     private int shipperId;
+    @OneToOne(mappedBy = "order",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH} )
+    private OrderItemNote orderItemNote;
 
     public Order() {
     }
 
-    public Order(int customerId, String orderDate, int status, String comments, String shippedDate, int shipperId) {
-        this.customerId = customerId;
+    public Order(String orderDate, int status, @Nullable String comments, @Nullable String shippedDate, int shipperId) {
         this.orderDate = orderDate;
         this.status = status;
         this.comments = comments;
@@ -50,12 +52,12 @@ public class Order {
         this.id = id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getOrderDate() {
@@ -99,16 +101,25 @@ public class Order {
         this.shipperId = shipperId;
     }
 
+    public OrderItemNote getOrderItemNote() {
+        return orderItemNote;
+    }
+
+    public void setOrderItemNote(OrderItemNote orderItemNote) {
+        this.orderItemNote = orderItemNote;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", customerId=" + customerId +
+                ", customer=" + customer +
                 ", orderDate='" + orderDate + '\'' +
                 ", status=" + status +
                 ", comments='" + comments + '\'' +
                 ", shippedDate='" + shippedDate + '\'' +
                 ", shipperId=" + shipperId +
+                ", orderItemNote=" + orderItemNote +
                 '}';
     }
 }

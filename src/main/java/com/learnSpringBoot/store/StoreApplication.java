@@ -1,7 +1,15 @@
 package com.learnSpringBoot.store;
 
+import com.learnSpringBoot.store.dao.OrderItemNoteRepository;
+import com.learnSpringBoot.store.entity.OrderItemNote;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.util.Optional;
+
+import static org.springframework.core.annotation.OrderUtils.getOrder;
 
 @SpringBootApplication
 public class StoreApplication {
@@ -11,7 +19,7 @@ public class StoreApplication {
 	}
 
 	/*@Bean
-	public CommandLineRunner commandLineRunner(ProductDAO productDAO){
+	public CommandLineRunner commandLineRunner(OrderItemNoteRepository orderItemNoteRepository){
 		return runner -> {
 			//createProduct(productDAO);
 
@@ -25,8 +33,21 @@ public class StoreApplication {
 			//updateName(productDAO);
 
 			//deleteProductById(productDAO);
+			getOrder(orderItemNoteRepository);
 
 		};
+	}
+
+	private void getOrder(OrderItemNoteRepository orderItemNoteRepository){
+		Integer theId = 2;
+		Optional<OrderItemNote> temp = orderItemNoteRepository.findById(theId);
+		OrderItemNote temp1 = temp.get();
+		System.out.println(temp1);
+
+		orderItemNoteRepository.deleteById(theId);
+
+
+
 	}*/
 
 	/*private void deleteProductById(ProductDAO productDAO) {
