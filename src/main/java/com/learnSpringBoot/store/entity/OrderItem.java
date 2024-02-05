@@ -1,15 +1,18 @@
 package com.learnSpringBoot.store.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.mapping.Join;
 
 @Entity
 @Table(name = "order_items")
 public class OrderItem {
-    @Id
-    @Column(name = "order_id")
-    private int orderId;
-    @Column(name = "products_id")
-    private int productId;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+    @OneToOne()
+    @JoinColumn(name = "product_id")
+    private Product product;
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "unit_price")
@@ -18,27 +21,27 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(int orderId, int productId, int quantity, double unitPrice) {
-        this.orderId = orderId;
-        this.productId = productId;
+    public OrderItem(Order order, Product product, int quantity, double unitPrice) {
+        this.order = order;
+        this.product = product;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public int getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -60,8 +63,8 @@ public class OrderItem {
     @Override
     public String toString() {
         return "OrderItem{" +
-                "orderId=" + orderId +
-                ", productId=" + productId +
+                "order=" + order +
+                ", product=" + product +
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
                 '}';
