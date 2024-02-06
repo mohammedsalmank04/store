@@ -5,14 +5,25 @@ import org.hibernate.mapping.Join;
 
 @Entity
 @Table(name = "order_items")
+//@IdClass(OrderItemId.class)
 public class OrderItem {
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-    @OneToOne()
-    @JoinColumn(name = "product_id")
-    private Product product;
+    /*//@ManyToOne
+    //@JoinColumn(name = "order_id")
+    @Id
+    @Column(name = "order_id")
+    private int orderId;
+    //@OneToOne()
+    //@JoinColumn(name = "product_id")
+    @Id
+    @Column(name = "product_id")
+    private int productId;
+    @Column(name = "quantity")
+    private int quantity;
+    @Column(name = "unit_price")
+    private double unitPrice;*/
+    @EmbeddedId
+    private OrderItemId id;
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "unit_price")
@@ -21,27 +32,18 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(Order order, Product product, int quantity, double unitPrice) {
-        this.order = order;
-        this.product = product;
+    public OrderItem(OrderItemId id, int quantity, double unitPrice) {
+        this.id = id;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
 
-    public Order getOrder() {
-        return order;
+    public OrderItemId getId() {
+        return id;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setId(OrderItemId id) {
+        this.id = id;
     }
 
     public int getQuantity() {
@@ -63,8 +65,7 @@ public class OrderItem {
     @Override
     public String toString() {
         return "OrderItem{" +
-                "order=" + order +
-                ", product=" + product +
+                "id=" + id +
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
                 '}';
